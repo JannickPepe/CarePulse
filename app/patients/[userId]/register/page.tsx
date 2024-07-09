@@ -5,8 +5,8 @@ const Register = () => {
 
     return (
         <div className='flex h-screen max-h-screen'>
-            <section>
-                
+            <section className='remove-scrollbar container'>
+
             </section>
         </div>
     );
