@@ -82,3 +82,18 @@ export const registerPatient = async ({identificationDocument, ...patient }: Reg
   }
 };
 
+// GET PATIENT
+export const getPatient = async (userId: string) => {
+  try {
+    const patients = await databases.listDocuments(
+      DATABASE_ID!,
+      PATIENT_COLLECTION_ID!,
+      [Query.equal("userId", [userId])]
+    );
+
+    return parseStringify(patients.documents[0]);
+  } catch (error) {
+    console.error("An error occurred while retrieving the patient details:", error);
+  }
+};
+
