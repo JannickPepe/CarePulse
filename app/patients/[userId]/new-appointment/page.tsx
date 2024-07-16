@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { AppointmentForm } from "@/components/forms/AppointmentForm";
 import { getPatient } from "@/lib/actions/patient.actions";
+import * as Sentry from '@sentry/nextjs';
 
 
 const Appointment = async ({ params: { userId } }: SearchParamProps) => {
@@ -8,6 +9,8 @@ const Appointment = async ({ params: { userId } }: SearchParamProps) => {
     // we can get access to getPatient now with our patient const based on userId
     const patient = await getPatient(userId);
 
+    // used for tracking the number of users that viewed a page.
+    Sentry.metrics.set("user_view_new-appointment", patient.name);
 
     return (
         <div className="flex h-screen max-h-screen">

@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Doctors } from "@/constants";
 import { getAppointment } from "@/lib/actions/appointment.actions";
 import { formatDateTime } from "@/lib/utils";
+import * as Sentry from '@sentry/nextjs';
+import { getUser } from "@/lib/actions/patient.actions";
 
 
 const RequestSuccess = async ({searchParams, params: { userId }, }: SearchParamProps) => {
@@ -14,6 +16,11 @@ const RequestSuccess = async ({searchParams, params: { userId }, }: SearchParamP
     const doctor = Doctors.find(
         (doctor) => doctor.name === appointment.primaryPhysician
     );
+
+    const user = await getUser(userId);
+
+    // used for tracking the number of users that viewed a page.
+    Sentry.metrics.set("user_view_appointment-success", user.name);
 
 
     return (
