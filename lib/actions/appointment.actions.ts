@@ -63,15 +63,15 @@ export const getRecentAppointmentList = async () => {
         const counts = (appointments.documents as Appointment[]).reduce(
             (acc, appointment) => {
                 switch (appointment.status) {
-                case "scheduled":
-                    acc.scheduledCount++;
-                    break;
-                case "pending":
-                    acc.pendingCount++;
-                    break;
-                case "cancelled":
-                    acc.cancelledCount++;
-                    break;
+                    case "scheduled":
+                        acc.scheduledCount++;
+                        break;
+                    case "pending":
+                        acc.pendingCount++;
+                        break;
+                    case "cancelled":
+                        acc.cancelledCount++;
+                        break;
                 }
                 return acc;
             },
@@ -130,6 +130,7 @@ export const updateAppointment = async ({appointmentId, userId, appointment, typ
         await sendSMSNotification(userId, smsMessage);
 
         revalidatePath("/admin");
+        
         return parseStringify(updatedAppointment);
     } catch (error) {
         console.error("An error occurred while scheduling an appointment:", error);

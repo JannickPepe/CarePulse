@@ -27,14 +27,12 @@ export const AppointmentForm = ({userId, patientId, type = "create", appointment
     // make our new const to have our validation from getAppointmentSchema with the type paramaeter
     const AppointmentFormValidation = getAppointmentSchema(type);
 
-    //
+    // note and cancellationReason has shorthand method
     const form = useForm<z.infer<typeof AppointmentFormValidation>>({
         resolver: zodResolver(AppointmentFormValidation),
         defaultValues: {
             primaryPhysician: appointment ? appointment?.primaryPhysician : "",
-            schedule: appointment
-                ? new Date(appointment?.schedule!)
-                : new Date(Date.now()),
+            schedule: appointment ? new Date(appointment?.schedule!) : new Date(Date.now()),
             reason: appointment ? appointment.reason : "",
             note: appointment?.note || "",
             cancellationReason: appointment?.cancellationReason || "",
