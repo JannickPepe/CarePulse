@@ -79,7 +79,7 @@ const RequestSuccess = async ({searchParams, params: { userId }, }: SearchParamP
                     </Link>
                 </Button>
 
-                <p className="copyright">© 2024 CarePluse</p>
+                <p className="copyright">© 2024 VibingHealth</p>
             </div>
         </div>
     );

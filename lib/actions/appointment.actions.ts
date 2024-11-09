@@ -124,7 +124,7 @@ export const updateAppointment = async ({appointmentId, userId, appointment, typ
 
         if (!updatedAppointment) throw Error;
 
-        const smsMessage = `Greetings from CarePulse. 
+        const smsMessage = `Greetings from VibingHealth. 
         ${type === "schedule" ? `Your appointment is confirmed for 
         ${formatDateTime(appointment.schedule!).dateTime} with Dr. ${appointment.primaryPhysician}` : `We regret to inform that your appointment for 
         ${formatDateTime(appointment.schedule!).dateTime} is cancelled. Reason:  ${appointment.cancellationReason}`}.`;

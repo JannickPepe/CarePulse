@@ -31,7 +31,7 @@ const Appointment = async ({ params: { userId } }: SearchParamProps) => {
                     />
 
                     <p className="copyright mt-10 py-12 xl:py-0">
-                        © 2024 CarePluse
+                        © 2024 VibingHealth
                     </p>
                 </div>
             </section>
